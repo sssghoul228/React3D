@@ -1,0 +1,118 @@
+.menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 50px;
+    left: 0;
+    transform: translateX(-130%);
+    transition: all 0.4s;
+}
+
+.menu.active {
+    transform: translateX(0);
+}
+
+.blur{
+    width: 100vw;
+    height: 100vh;
+    left: 30%;
+    backdrop-filter: blur(2px);
+    position: absolute;
+}
+
+.menu_content {
+    width: 30%;
+    height: 100%;
+    background-color: #181a1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.8s;
+}
+
+.menu_header {
+    padding: 10px;
+    font-size: 2rem;
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    width: 100%;
+}
+
+ul li button {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+ul {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    color: whitesmoke;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.showMenuItem {
+    color: whitesmoke;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.showMenuItem::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: whitesmoke;
+    border-bottom-color: whitesmoke;
+    transform: scale(0.1, 1);
+}
+
+.showMenuItem:hover button {
+    letter-spacing: 2px;
+}
+
+.showMenuItem:hover::before {
+    opacity: 1; 
+    transform: scale(1, 1); 
+}
+
+.showMenuItem::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+    background-color: rgba(19, 15, 15, 0.1);
+}
+
+.showMenuItem:hover::after {
+    opacity: 0; 
+    transform: scale(0.1, 1);
+}

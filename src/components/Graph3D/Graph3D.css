@@ -1,0 +1,77 @@
+.canvas3DContain {
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+  }
+#graph3D {
+    margin: auto;
+    justify-content: center;
+  }
+#figures {
+    height: 40px;
+    width: 200px;
+    font-size: 1.7em;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+  }
+#colorFigure {
+    width: 150px;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+.paramsFigures {
+    font-size: 1em;
+    width: 300px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+    z-index: 1;
+  }
+#btnFigure {
+    background-color: #274146;
+    color: black;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+#listParams {
+    max-height: 584px;
+    overflow: auto;
+  }
+#listParams::-webkit-scrollbar {
+    width: 0;
+  }
+  
+#Checkbox3D {
+    margin-left: 50px;
+    display: flex;
+  }
+
+#canvas3D {
+    cursor: grab;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#canvas3D:active {
+    cursor: grabbing;
+}
+  
