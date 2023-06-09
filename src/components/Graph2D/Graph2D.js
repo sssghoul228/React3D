@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Canvas from '../../modules/Canvas/Canvas';
 import MathGraph from './MathGraph';
-import UIComponent from './UI';
-import AddFunc from './AddFunc/AddFunc';
+import UI from './UI';
 import './Graph2D.css';
 
 export default function Graph2D() {
@@ -16,6 +15,7 @@ export default function Graph2D() {
     HEIGHT: 20,
   };
 
+  const zoom = 1;
   let derevativeX = 0;
   let funcs = [];
   let canMove = false;
@@ -34,7 +34,7 @@ export default function Graph2D() {
         mouseLeave: () => mouseLeave(),
       },
     });
-    ui = new UIComponent({
+    ui = new UI({
       id: 'ui',
       parent: 'ui',
       callbacks: {
@@ -77,7 +77,7 @@ export default function Graph2D() {
   }
   function wheel(event) {
     event.preventDefault();
-    let delta = event.deltaY > 0 ? -0.3 : +0.3;
+    let delta = event.deltaY > 0 ? -zoom : +zoom;
     if (WIN.BOTTOM + delta < -6) {
       WIN.WIDTH -= delta;
       WIN.HEIGHT -= delta;
@@ -197,7 +197,7 @@ export default function Graph2D() {
     //Derivative
     funcs.forEach((f) => {
       if (f && f.printDerevative) {
-        MathGraph.printTangent(f.f, derevativeX);
+        mathGraph.printTangent(f.f, derevativeX);
       }
     });
 
@@ -209,18 +209,16 @@ export default function Graph2D() {
     });
     return null;
   }
-  const [addFuncActive, setAddFuncActive] = useState(false);
+  // const [addFuncActive, setAddFuncActive] = useState(false);
   return (
     <div className="flex">
       <div className="canvas">
         <canvas id="graph2D"></canvas>
       </div>
-      <button className='addButton' id="addFunction" onClick={() => setAddFuncActive(true)}>
+      <button className='addButton' id="addFunction" onClick={() => ui.addFunction()}>
         Add function
       </button>
       <div id="funcsInputs"></div>
-      <AddFunc active={addFuncActive} setActive={setAddFuncActive}>
-      </AddFunc>
     </div>
   );
 }

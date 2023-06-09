@@ -1,22 +1,41 @@
+/*
+180 + 500 = 680
+680 / 180 = 
+center = 340
+1/2 center = 170
+*/
 .Calcul {
     position: relative;
-    top: 250px;
-    left: 200px;
+    left: 20%;
 }
 
-.Poly {
-    position: relative;
-    top: 140px;
-    left: 200%;
-}
-.Calculator-operand{
-    top: 120%;
-    left: 31%;
-    margin: 0;
+.CalcText {
     position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 7px;
+    width: 500px;
+    top: 280px;
+    left: 180px;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    font-family: 'Impact', sans-serif;
+    font-display: swap;
+}
+
+.PolyText {
+    position: absolute;
+    width: 500px;
+    top: 280px;
+    left: 1150px;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    font-family: 'Impact', sans-serif;
+    font-display: swap;
+}
+
+.Calculator-operand{
+    position: relative;
+    top: 370px;
+    left: 170px;
+    margin: 5px;
     font-family: 'Impact', sans-serif;
     font-display: swap;
 
@@ -24,6 +43,11 @@
 
 .calc-a,
 .calc-b {
+    position: relative;
+    width: 170px;
+    top: 360px;
+    margin-left: 70px ;
+    left: 135px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid rgba(212, 201, 192, 0.925);
@@ -32,12 +56,15 @@
 }
 
 .calc-d{
+    position: relative;
+    width: 170px;
+    top: 385px;
+    left: 165px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid rgba(212, 201, 192, 0.925);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(212, 201, 192, 0.925);
-    
 }
 
 .operand{
@@ -89,8 +116,23 @@
 
 .polya,
 .polyb,
-.polyc,
 .polyx{
+    position: relative;
+    margin: 5px;
+    top: 230px;
+    left: 1140px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 201, 192, 0.925);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(212, 201, 192, 0.925);
+    z-index: 1;
+}
+
+.polyc {
+    position: relative;
+    top: 260px;
+    left: 1250px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid rgba(212, 201, 192, 0.925);
@@ -108,6 +150,10 @@
 }
 
 .polyOperand{
+    position: relative;
+    top: 240px;
+    left: 1150px;
+    margin: 3px;
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: #FF7F50;
@@ -116,13 +162,17 @@
     box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
     color: #fff;
     flex-basis: 20%;
-    font-family: inherit;
-    font-size: 24px;
+    font-family: 'Impact', sans-serif;
+    font-display: swap;
+    font-size: 25px;
     width: 40px;
     height: 40px;
 }
 
 .polyResult{
+    position: relative;
+    top: 220px;
+    left: 1050px;
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: #FF7F50;
@@ -131,13 +181,15 @@
     box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
     color: #fff;
     flex-basis: 20%;
-    font-family: inherit;
-    font-size: 24px;
+    font-family: 'Impact', sans-serif;
+    font-display: swap;
+    font-size: 20px;
     width: 200px;
     height: 45px;
 }
 
-.polyOperand:last-child{
+.polyOperand:last-child,
+.polyResult:last-child{
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: rgba(255, 255, 255, 0.75);
@@ -148,26 +200,15 @@
     background: #FF7F50;
 }
 
-.polyOperand:hover{
+.polyOperand:hover,
+.polyResult:hover{
     background-color: inherit;
     color: inherit;
 }
 
-.polyOperand:last-child:hover{
+.polyOperand:last-child:hover,
+.polyResult:last-child:hover{
     background-color: inherit;
     color: inherit;
 }
 
-.resultPol{
-    align-items: center;
-    display: flex;
-    font-family: 'Impact', sans-serif;
-    font-display: swap;
-    justify-content: center;
-    margin: 0;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
-}

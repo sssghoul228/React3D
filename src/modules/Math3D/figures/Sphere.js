@@ -9,62 +9,37 @@ class Sphere extends Figure {
     const polygons = [];
 
     const printPointsSphere = () => {
-      for (let i = 0; i < count; i++) {
-        for (let j = 0; j < count; j++) {
-          points.push(
-            new Point(
-              radius * Math.sin(i * 2 * Math.PI / count) * Math.cos(j * Math.PI / count) + x,
-              radius * Math.cos(i * 2 * Math.PI / count) + y,
-              radius * Math.sin(i * 2 * Math.PI / count) * Math.sin(j * Math.PI / count) + z,
-            ),
-          );
+      for (let j = 0; j <= count; j++) {
+        const T = (Math.PI / count) * j;
+        for (let i = 0; i < count; i++) {
+            const p = ((2 * Math.PI) / count) * i;
+            points.push(new Point(radius * Math.sin(T) * Math.cos(p) + x, radius * Math.cos(T) + y, radius * Math.sin(T) * Math.sin(p) + z));
         }
-      }
+    }
     };
 
     const printEdgesSphere = () => {
-      for (let i = 0; i < count; i++) {
-        const k = i ? i - 1 : i;
-        for (let j = 0; j < count - 1; j++) {
-          edges.push(new Edge(j + i * count, j + i * count + 1));
-          edges.push(new Edge(j + i * count, j + k * count));
+      for (let i = 0; i < points.length; i++) {
+        if (i + +count + 1 < points.length && (i + 1) % count !== 0) {
+            edges.push(new Edge(i, i + 1));
         }
-        edges.push(new Edge(i * count, points.length - count * k - 1));
-        edges.push(new Edge(points.length - i * count - 1, points.length - k * count - 1));
-        edges.push(new Edge(0, points.length - i - 1));
-      }
+        if ((i + 1) % count === 0) {
+            edges.push(new Edge(i, i + 1 - count));
+        }
+        if (i < points.length - count) {
+            edges.push(new Edge(i, i + count));
+        }
+    }
     };
 
     const printPolygonsSphere = () => {
-      for (let i = 0; i < count - 1; i++) {
-        for (let j = 0; j < count - 1; j++) {
-          polygons.push(new Polygon([
-            j + i * count,
-            j + 1 + i * count,
-            j + 1 + (i + 1) * count,
-            j + (i + 1) * count,
-          ], color));
+        for (let i = 0; i < points.length; i++) {
+            if (i + 1 + count < points.length && (i + 1) % count !== 0) {
+                polygons.push(new Polygon([i, i + 1, i + 1 + count, i + count], color));
+            } else if (i + count < points.length && (i + 1) % count === 0) {
+                polygons.push(new Polygon([i, i + 1 - count, i + 1, i + count], color))
+            }
         }
-
-        polygons.push(new Polygon([
-          points.length - i * count - 1,
-          points.length - (i ? (i - 1) : i) * count - 1,
-          i * count,
-          (i + 1) * count,
-        ], color));
-
-        polygons.push(new Polygon([
-          0,
-          points.length - i - 1,
-          points.length - i - 2,
-        ], color))
-      }
-
-      polygons.push(new Polygon([
-        0,
-        points.length - count,
-        count * 2 - 1,
-      ], color))
     };
 
     printPointsSphere();

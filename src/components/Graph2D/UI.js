@@ -1,6 +1,5 @@
 import React from 'react';
-
-class UIComponent extends React.Component {
+class UI extends React.Component {
   constructor(props) {
     super(props);
     this.num = 0;
@@ -17,42 +16,42 @@ class UIComponent extends React.Component {
       div.removeChild(button);
       div.removeChild(width);
       div.removeChild(color);
-      div.removeChild(startLine);
-      div.removeChild(endLine);
+      div.removeChild(start);
+      div.removeChild(end);
       div.removeChild(checkbox);
       div.removeChild(derivativeDiv);
     });
 
-    const startLine = document.createElement('input');
-    startLine.setAttribute('placeholder', 'Start line');
-    startLine.setAttribute('class', 'params');
-    startLine.setAttribute('id', 'startLine' + this.num);
-    startLine.dataset.num = this.num;
-    startLine.addEventListener('keyup', () => this.getValue(startLine));
+    const start = document.createElement('input');
+    start.setAttribute('placeholder', 'Начало');
+    start.setAttribute('class', 'params');
+    start.setAttribute('id', 'start' + this.num);
+    start.dataset.num = this.num;
+    start.addEventListener('keyup', () => this.getValue(start));
 
-    const endLine = document.createElement('input');
-    endLine.setAttribute('placeholder', 'End line');
-    endLine.setAttribute('class', 'params');
-    endLine.setAttribute('id', 'endLine' + this.num);
-    endLine.dataset.num = this.num;
-    endLine.addEventListener('keyup', () => this.getValue(endLine));
+    const end = document.createElement('input');
+    end.setAttribute('placeholder', 'Конец');
+    end.setAttribute('class', 'params');
+    end.setAttribute('id', 'end' + this.num);
+    end.dataset.num = this.num;
+    end.addEventListener('keyup', () => this.getValue(end));
 
     const width = document.createElement('input');
-    width.setAttribute('placeholder', 'Width');
+    width.setAttribute('placeholder', 'Ширина');
     width.setAttribute('id', 'width' + this.num);
     width.setAttribute('class', 'params');
     width.dataset.num = this.num;
     width.addEventListener('keyup', () => this.getValue(width));
 
     const color = document.createElement('input');
-    color.setAttribute('placeholder', 'Color');
+    color.setAttribute('placeholder', 'Цвет');
     color.setAttribute('id', 'color' + this.num);
     color.setAttribute('class', 'params');
     color.dataset.num = this.num;
     color.addEventListener('keyup', () => this.getValue(color));
 
     const input = document.createElement('input');
-    input.setAttribute('placeholder', `Function №${this.num}`);
+    input.setAttribute('placeholder', `Функция №${this.num}`);
     input.setAttribute('id', 'inp' + this.num);
     input.setAttribute('class', 'params');
     input.dataset.num = this.num;
@@ -65,7 +64,8 @@ class UIComponent extends React.Component {
     checkbox.setAttribute('id', 'checkbox' + this.num);
     checkbox.dataset.num = this.num;
     const derivativeDiv = document.createElement('div');
-    derivativeDiv.innerHTML = 'Показывать касательную';
+    derivativeDiv.innerHTML = 'Касательная';
+    derivativeDiv.className = 'Casatel';
     checkbox.addEventListener('click', () => {
       if (checkbox.hasAttribute('cheked')) {
         checkbox.removeAttribute('cheked');
@@ -80,8 +80,8 @@ class UIComponent extends React.Component {
     div.appendChild(input);
     div.appendChild(width);
     div.appendChild(color);
-    div.appendChild(startLine);
-    div.appendChild(endLine);
+    div.appendChild(start);
+    div.appendChild(end);
     div.appendChild(button);
     div.appendChild(checkbox);
     div.appendChild(derivativeDiv);
@@ -89,16 +89,20 @@ class UIComponent extends React.Component {
     this.num++;
   }
 
+  notEval(code) {
+    return new Function('return ' + code)();
+  }
+
   keyup(elem) {
     try {
       let f;
-      eval(`f = function (x) {return ${elem.value};}`);
+      this.notEval(`f = function (x) {return ${elem.value};}`);
 
       let width = document.getElementById(`width${elem.dataset.num}`);
       let color = document.getElementById(`color${elem.dataset.num}`);
 
-      let startLine = document.getElementById(`startLine${elem.dataset.num}`);
-      let endLine = document.getElementById(`endLine${elem.dataset.num}`);
+      let start = document.getElementById(`start${elem.dataset.num}`);
+      let end = document.getElementById(`end${elem.dataset.num}`);
 
       let check = document.getElementById(`checkbox${elem.dataset.num}`);
       const flag = check.hasAttribute('cheked');
@@ -108,8 +112,8 @@ class UIComponent extends React.Component {
         elem.dataset.num,
         width.value,
         color.value,
-        startLine.value,
-        endLine.value,
+        start.value,
+        end.value,
         flag
       );
     } catch (e) {}
@@ -119,7 +123,7 @@ class UIComponent extends React.Component {
     try {
       let f;
       let graph = document.getElementById(`inp${elem.dataset.num}`);
-      eval(`f = function (x) {return ${graph.value};}`);
+      this.notEval(`f = function (x) {return ${graph.value};}`);
 
       let check = document.getElementById(`checkbox${elem.dataset.num}`);
       const flag = check.hasAttribute('cheked');
@@ -127,16 +131,16 @@ class UIComponent extends React.Component {
       let width = document.getElementById(`width${elem.dataset.num}`);
       let color = document.getElementById(`color${elem.dataset.num}`);
 
-      let startLine = document.getElementById(`startLine${elem.dataset.num}`);
-      let endLine = document.getElementById(`endLine${elem.dataset.num}`);
+      let start = document.getElementById(`start${elem.dataset.num}`);
+      let end = document.getElementById(`end${elem.dataset.num}`);
 
       this.callbacks.addFunction(
         f,
         elem.dataset.num,
         width.value,
         color.value,
-        startLine.value,
-        endLine.value,
+        start.value,
+        end.value,
         flag
       );
     } catch (e) {}
@@ -154,4 +158,4 @@ class UIComponent extends React.Component {
   }
 }
 
-export default UIComponent;
+export default UI;

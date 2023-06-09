@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
 import useSetFigure from "./useSetFigure";
 
-import{CubeSettings, CylinderSettings, ElipsSettings, SphereSettings} from './figuresS'
+import{CubeSettings, CylinderSettings, ElipsSettings, SphereSettings,
+ConeSettings, TorSettings, SedloSettings, ParablCylinderSettings, 
+HyperCylinderSettings, ElipsParablSettings, SinglePolosHyperSettings, TwoPolosHyperSettings} from './figuresS'
 
 
 export default function FigureSettings({ setScene }) {
@@ -33,6 +35,30 @@ export default function FigureSettings({ setScene }) {
                <option className="figure" value="Elips">
                     Элипсоид
                </option>
+               <option className="figure" value="Cone">
+                    Конус
+               </option>
+               <option className="figure" value="Tor">
+                    Тор
+               </option>
+               <option className="figure" value="Sedlo">
+                    Гиперболический параболоид "Седло"
+               </option>
+               <option className="figure" value="ParablCylinder">
+                    Параболический цилиндр
+               </option>
+               <option className="figure" value="HyperCylinder">
+                    Гиперболический цилиндр
+               </option>
+               <option className="figure" value="ElipsParabl">
+                    Эллиптический параболоид
+               </option>
+               <option className="figure" value="SinglePolosHyper">
+                    Однополостной гиперболоид
+               </option>
+               <option className="figure" value="TwoPolosHyper">
+                    Двуполостной гиперболоид
+               </option>
             </select>
             {figureName === "Cube" ? (
                 <CubeSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
@@ -40,8 +66,24 @@ export default function FigureSettings({ setScene }) {
                 <CylinderSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
             ) : figureName === "Sphere" ? (
                 <SphereSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
-            ) : figureName === "Ellipsoid" ? (
+            ) : figureName === "Elips" ? (
                 <ElipsSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "Cone" ? (
+                <ConeSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "Tor" ? (
+                <TorSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ): figureName === "Sedlo" ? (
+                <SedloSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "ParablCylinder" ? (
+                <ParablCylinderSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "HyperCylinder" ? (
+                <HyperCylinderSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "ElipsParabl" ? (
+                <ElipsParablSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "SinglePolosHyper" ? (
+                <SinglePolosHyperSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
+            ) : figureName === "TwoPolosHyper" ? (
+                <TwoPolosHyperSettings getFigure={getFigure} figureName={figureName} setScene={setScene} />
             ) : (
                 <></>
             )}

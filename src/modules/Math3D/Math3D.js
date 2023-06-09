@@ -72,12 +72,12 @@ export default class Math3D{
         point.z = array[2];
     }
 
-    move(dx, dy, dz){
+    move(x, y, z){
         return [
             [1, 0, 0, 0],
             [0, 1, 0, 0],
             [0, 0, 1, 0],
-            [dx, dy, dz, 1]
+            [x, y, z, 1]
         ]
     }
 
@@ -109,7 +109,7 @@ export default class Math3D{
     }
 
     calcIllumination(distance, lumen) {
-        const res = distance ? lumen / Math.pow(distance, 2) : 1;
+        const res = distance ? lumen / Math.pow(distance, 3) : 1;
         return res > 1 ? 1 : res;
     }
 

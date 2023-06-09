@@ -8,15 +8,15 @@ const Menu = ({ header, active, setActive, showMenuItem }) => {
             <div className="menu_header">{header}</div>
             <ul>
                     <li>
-                        <span class="material-symbols-outlined">Calculate</span>
+                        <span className="material-symbols-outlined">Calculate</span>
                         <button className='showMenuItem' onClick={() => showMenuItem('calc')}>Калькулятор</button>
                     </li>
                     <li>
-                        <span class="material-symbols-outlined">Insights</span>
+                        <span className="material-symbols-outlined">Insights</span>
                         <button className='showMenuItem' onClick={() => showMenuItem('graph2D')}>Graph2D</button>
                     </li>
                     <li>
-                        <span class="material-symbols-outlined">deployed_code</span>
+                        <span className="material-symbols-outlined">deployed_code</span>
                         <button className='showMenuItem' onClick={() => showMenuItem('graph3D')}>Graph3DD</button>
                     </li>
             </ul>

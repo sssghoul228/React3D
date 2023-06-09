@@ -15,18 +15,18 @@ export default function CylinderSettings({ getFigure, figureName, setScene }) {
         const y = ref3.current.value - 0;
         const z = ref4.current.value - 0;
 
-        const r = ref5.current.value - 0;
-        const h = ref6.current.value - 0;
+        const radius = ref5.current.value - 0;
+        const height = ref6.current.value - 0;
         const count = ref7.current.value - 0;
 
 
         if (color) {
-            setScene([getFigure(figureName, { r, h, count, color, x, y, z })]);
+            setScene([getFigure(figureName, { radius, height, count, color, x, y, z })]);
         }
     };
 
     return (
-        <div>
+        <div className="Settings">
             <span>Радиус:</span>
             <input ref={ref5} onChange={onChange} defaultValue={10} />
             <br></br>

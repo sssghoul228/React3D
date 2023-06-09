@@ -18,7 +18,7 @@ export default function CubeSettings({ getFigure, figureName, setScene }) {
     };
 
     return (
-        <div>
+        <div className="Settings">
             <span>Выбор цвета</span>
             <input ref={ref1} type="color" onChange={onChange} />
             <br></br>

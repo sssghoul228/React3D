@@ -2,72 +2,43 @@
     display: flex;
     justify-content: center;
     z-index: -1;
-  }
+}
+
 #graph3D {
     margin: auto;
     justify-content: center;
-  }
+}
+
 #figures {
+    position: relative;
+    top: 180px;
+    left: 356px;
     height: 40px;
-    width: 200px;
+    width: 400px;
     font-size: 1.7em;
+    border-radius: 10px;
     text-align: center;
     justify-content: center;
     display: flex;
-  }
+}
+
 #colorFigure {
     width: 150px;
     margin-top: 10px;
     padding: 5px;
     border-radius: 5px;
-  }
-.paramsFigures {
-    font-size: 1em;
-    width: 300px;
-    height: auto;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    box-sizing: border-box;
-    justify-content: center;
-    display: flex;
-    z-index: 1;
-  }
-#btnFigure {
-    background-color: #274146;
-    color: black;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-  }
-#listParams {
-    max-height: 584px;
-    overflow: auto;
-  }
-#listParams::-webkit-scrollbar {
-    width: 0;
-  }
-  
-#Checkbox3D {
-    margin-left: 50px;
-    display: flex;
-  }
+}
 
 #canvas3D {
     cursor: grab;
+    border: 2px solid whitesmoke;
     justify-content: center;
     display: flex;
     position: absolute;
     z-index: -1;
     align-items: center;
     top: 50%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
 }
 
@@ -75,3 +46,52 @@
     cursor: grabbing;
 }
   
+.panel {
+  display: flex;
+  position: absolute;
+  top: 580px;
+  left: 460px;
+}
+
+.panel:not(:disabled):not(:checked)+label:hover::before {
+border-color: #b3d7ff;
+}
+/* стили для активного состояния чекбокса (при нажатии на него) */
+.panel:not(:disabled):active+label::before {
+background-color: #b3d7ff;
+border-color: #b3d7ff;
+}
+/* стили для чекбокса, находящегося в фокусе */
+.panel:focus+label::before {
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.panel:focus:not(:checked)+label::before {
+border-color: #80bdff;
+}
+/* стили для чекбокса, находящегося в состоянии disabled */
+.panel:disabled+label::before {
+background-color: #e9ecef;
+}
+
+.Settings {
+    color: black;
+    font-size: 16px;
+    display: block;
+    position: absolute;
+    top: 245px;
+    left: 370px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    
+}
+
+.Settings > * {
+    text-align: center;
+    min-width: 200px;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}

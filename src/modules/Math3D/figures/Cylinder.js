@@ -3,52 +3,42 @@ import {Figure, Point, Edge, Polygon} from '../rendering';
 
 class Cylinder extends Figure {
   constructor(props = {}) {
-    super(props);
-    const { color = '#30d5c8', center, height = 20, count = 10, radius = 10 } = props;
+    const { color = '#30d5c8', height = 20, count = 10, radius = 10, x = 0, y = 0, z = 0 } = props;
 
     const points = [];
     const edges = [];
     const polygons = [];
 
-    for (let i = -count / 2; i < count / 2; i++) {
-      for (let j = 0; j < count; j++) {
-        points.push(
-          new Point(
-            center.x + radius * Math.cos(j * 2 * Math.PI / count),
-            center.y + i * height / count,
-            center.z + radius * Math.sin(j * 2 * Math.PI / count),
-          ),
-        );
-      }
-    }
-
     for (let i = 0; i < count; i++) {
-      const k = i ? i - 1 : i;
-      for (let j = 0; j < count - 1; j++) {
-        edges.push(new Edge(j + i * count, j + i * count + 1));
-        edges.push(new Edge(j + k * count, j + i * count));
-      }
-      edges.push(new Edge(i ? i * count - 1 : i, count + (i ? i * count - 1 : i)));
-      edges.push(new Edge(i * count, (i + 1) * count - 1));
-    }
+      const T = ((2 * Math.PI) / count) * i;
+      for (let j = -count / 2; j < count / 2; j++) {
+          const p = (height / count) * j;
 
-    for (let i = 0; i < count - 1; i++) {
-      for (let j = 0; j < count - 1; j++) {
-        polygons.push(
-          new Polygon(
-            [
-              j + i * count,
-              j + (1 + i) * count,
-              j + 1 + (i + 1) * count,
-              j + i * count + 1,
-            ],
-            color,
-          ),
-        );
+          points.push(new Point(radius * Math.cos(T) + x, p + y, radius * Math.sin(T) + z));
       }
+  }
 
-      polygons.push(new Polygon([i * count, (i + 1) * count - 1, (i + 2) * count - 1, (i + 1) * count], color));
+  for (let i = 0; i < points.length; i++) {
+    if ((i + 1) % count !== 0 && i + 1 < points.length) {
+        edges.push(new Edge(i, i + 1));
     }
+    if (i + count < points.length) {
+        edges.push(new Edge(i, i + count));
+    }
+    if (i < count) {
+        edges.push(new Edge(i, points.length - count + i));
+    }
+  } 
+
+  for (let i = 0; i < points.length; i++) {
+    if (i + count + 1 < points.length && (i + 1) % count !== 0) {
+        polygons.push(new Polygon([i, i + 1, i + 1 + count, i + count], color));
+    }
+    if (i < count - 1) {
+        polygons.push(new Polygon([i, i + 1, points.length - count + i + 1, points.length - count + i], color));
+    }
+  }
+
 
     super(points, edges, polygons);
   }
